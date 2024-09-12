@@ -1,0 +1,17 @@
+---
+import { Gallery } from "../components/gallery";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="chub browser">
+	<Gallery client:only="solid-js" />
+</Layout>
+
+<style>
+	body,
+	html {
+		color: white;
+		background: #13151a;
+		margin: 0;
+	}
+</style>

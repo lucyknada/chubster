@@ -1,0 +1,54 @@
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 35px;
+  justify-content: stretch;
+}
+
+.navigation {
+  display: flex;
+  gap: 15px;
+  align-items: stretch;
+}
+
+.navigationButtons {
+  justify-content: stretch;
+  align-items: center;
+  display: flex;
+  gap: 15px;
+  button {
+    box-sizing: border-box;
+    font-size: 20px;
+    height: 100%;
+    border: none;
+    border-radius: 10px;
+    width: 60px;
+    background: rgba(255,255,255,0.3);
+    color: white;
+
+    &:hover {
+      background: rgba(255,255,255,0.2);
+      cursor: pointer;
+    }
+
+    &:disabled {
+      background: rgba(255,255,255,0.1);
+      cursor: default;
+    }
+  }
+}
+
+.wrapper {
+  padding: 20px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.search {
+  padding: 10px;
+  background: rgba(255,255,255,0.3);
+  border-radius: 10px;
+  border: none;
+  color: white;
+}
