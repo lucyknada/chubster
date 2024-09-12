@@ -13,6 +13,6 @@ config:
 - PUBLIC_FUZZY_FILTERED_TAGS - fuzzy matches tags, so e.g. "male" will also filter "malepov"
 - PUBLIC_EXACT_FILTERED_TAGS - exact matches, so "male" will only filter "male"
 
-preview below is censored for github, but there's no 
+preview below is censored for github, but there's none present in the actual ui
 
 ![preview](preview.png)
