@@ -9,6 +9,11 @@
   display: flex;
   gap: 15px;
   align-items: stretch;
+  position: sticky;
+  top: 0px;
+  background: #13151a;
+  width: 100%;
+  padding: 5px;
 }
 
 .navigationButtons {
