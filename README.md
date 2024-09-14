@@ -8,6 +8,8 @@ otherwise during development or quick testing: `npm run dev`
 
 by default it'll build the node astro server; you can refer to other ssr-adapters other than nodejs here: https://docs.astro.build/en/guides/server-side-rendering/
 
+copy .env.example to .env and adjust config.
+
 config:
 - PUBLIC_BAN_AUTHORS - set it to "1" if you want to be able to ignore card creators on your instance (not recommended for public instances)
 - PUBLIC_FUZZY_FILTERED_TAGS - fuzzy matches tags, so e.g. "male" will also filter "malepov"

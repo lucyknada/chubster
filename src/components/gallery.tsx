@@ -15,7 +15,7 @@ export function Gallery() {
   });
 
   const [filteredAuthors] = createResource(async () => {
-    if(import.meta.env.PUBLIC_BAN_AUTHORS !== 1) return []
+    if(import.meta.env.PUBLIC_BAN_AUTHORS == 0) return []
     const { data, error } = await actions.getBannedAuthors();
     if(error) {
       alert(`getFilteredAuthors: ${error}`)
@@ -60,8 +60,8 @@ export function Gallery() {
         <Show when={!nodes.loading && !filteredAuthors.loading}>
           <div class={style.gallery}>
             {nodes() && nodes().map((card: any) => {
-              const filteredTags: string[] = JSON.parse(import.meta.env.PUBLIC_BAN_AUTHORS) || [];
-              const filteredTagsExactMatch: string[] = JSON.parse(import.meta.env.PUBLIC_EXACT_FILTERED_TAGS ) || [];
+              const filteredTags: string[] = JSON.parse(import.meta.env.PUBLIC_FUZZY_FILTERED_TAGS || "[]");
+              const filteredTagsExactMatch: string[] = JSON.parse(import.meta.env.PUBLIC_EXACT_FILTERED_TAGS || "[]");
               const description = card.tagline || card.description;
               if(description.split(" ").length < 5) return;
               if(filteredAuthors && !filteredAuthors()?.loading && (filteredAuthors() as unknown as number[]).includes(card.creatorId)) return;
