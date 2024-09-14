@@ -14,23 +14,23 @@ async function downloadCard(fullPath: string) {
   document.body.removeChild(link)
 }
 
-export function Card(card: any) {
-  const description = card.metadata.tagline || card.metadata.description;
+export function Card({card, tagClicked}: {card: any, tagClicked: (tag: string) => void}) {
+  const description = card.tagline || card.description;
   return (
     <>
       <div class={style.card}>
         <div>
-          <a href={`https://characterhub.org/characters/${card.metadata.fullPath}`}><img class={style.avatar} src={card.metadata.avatar_url} /></a>
+          <a href={`https://characterhub.org/characters/${card.fullPath}`}><img class={style.avatar} src={card.avatar_url} /></a>
         </div>
         <div class={style.content}>
           <div class={style.header}>
             <div class={style.controls}>
-              <button onClick={() => downloadCard(card.metadata.fullPath)}>&DownArrowBar; download</button>
+              <button onClick={() => downloadCard(card.fullPath)}>&DownArrowBar; download</button>
 
               <Show when={import.meta.env.PUBLIC_BAN_AUTHORS == 1}>
                 <button onClick={async () => {
                   if (window.confirm("Do you really want to ignore that author?")) {
-                    const {error} = await actions.banAuthor({ author_id: card.metadata.creatorId });
+                    const {error} = await actions.banAuthor({ author_id: card.creatorId });
                     if(error) {
                       alert(error);
                     }
@@ -39,14 +39,14 @@ export function Card(card: any) {
               </Show>
             </div>
             <div>
-              <h3 class={style.title}>{card.metadata.name}</h3>
+              <h3 class={style.title}>{card.name}</h3>
               <p>{description.substring(0,200).trim() + "..."}</p>
             </div>
           </div>
 
           <div class={style.tags}>
-            {card.metadata.topics.slice(0,15).map((tag: string) => (
-              <span class={style.tag}>{tag}</span>
+            {card.topics.slice(0,15).map((tag: string) => (
+              <button onClick={() => tagClicked(tag)} class={style.tag}>{tag}</button>
             ))}
           </div>
         </div>

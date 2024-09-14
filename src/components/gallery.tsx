@@ -67,7 +67,15 @@ export function Gallery() {
               if(filteredAuthors && !filteredAuthors()?.loading && (filteredAuthors() as unknown as number[]).includes(card.creatorId)) return;
               if(card.topics.some((tag: string) => filteredTagsExactMatch.some(filteredTag => tag.toLowerCase() == filteredTag.toLowerCase()))) return;
               if(card.topics.some((tag: string) => filteredTags.some(filteredTag => tag.toLowerCase().includes(filteredTag.toLowerCase())))) return;
-              return <Card metadata={card} />
+              return (
+                <Card
+                  card={card}
+                  tagClicked={(tag: string) => {
+                    setSearchText(tag);
+                    updateGallery();
+                  }}
+                />
+              )
             })}
           </div>
         </Show>
