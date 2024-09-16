@@ -29,13 +29,13 @@ export function Card({card, tagClicked}: {card: any, tagClicked: (tag: string) =
 
               <Show when={import.meta.env.PUBLIC_BAN_AUTHORS == 1}>
                 <button onClick={async () => {
-                  if (window.confirm("Do you really want to ignore that author?")) {
-                    const {error} = await actions.banAuthor({ author_id: card.creatorId });
+                  if (window.confirm(`Do you really want to ignore that ${card.creatorId > 0 ? "author" : "card"}?`)) {
+                    const {error} = await actions.banAuthor({ author_id: card.creatorId, card_id: card.id });
                     if(error) {
                       alert(error);
                     }
                   }
-                }}>&#8623; ban author</button>
+                }}>&#8623; ban {card.creatorId > 0 ? "author" : "card"}</button>
               </Show>
             </div>
             <div>

@@ -24,6 +24,16 @@ export function Gallery() {
     return data
   });
 
+  const [filteredCards] = createResource(async () => {
+    if(import.meta.env.PUBLIC_BAN_AUTHORS == 0) return []
+    const { data, error } = await actions.getFilteredCards();
+    if(error) {
+      alert(`getFilteredCards: ${error}`)
+      return
+    }
+    return data
+  });
+
   createEffect(() => {
     setPage(1);
     searchText();
@@ -57,7 +67,7 @@ export function Gallery() {
         <Show when={nodes.loading}>
           loading..
         </Show>
-        <Show when={!nodes.loading && !filteredAuthors.loading}>
+        <Show when={!nodes.loading && !filteredAuthors.loading && !filteredCards.loading}>
           <div class={style.gallery}>
             {nodes() && nodes().map((card: any) => {
               const filteredTags: string[] = JSON.parse(import.meta.env.PUBLIC_FUZZY_FILTERED_TAGS || "[]");
@@ -65,6 +75,7 @@ export function Gallery() {
               const description = card.tagline || card.description;
               if(description.split(" ").length < 5) return;
               if(filteredAuthors && !filteredAuthors()?.loading && (filteredAuthors() as unknown as number[]).includes(card.creatorId)) return;
+              if(filteredCards && !filteredCards()?.loading && (filteredCards() as unknown as number[]).includes(card.id)) return;
               if(card.topics.some((tag: string) => filteredTagsExactMatch.some(filteredTag => tag.toLowerCase() == filteredTag.toLowerCase()))) return;
               if(card.topics.some((tag: string) => filteredTags.some(filteredTag => tag.toLowerCase().includes(filteredTag.toLowerCase())))) return;
               return (
