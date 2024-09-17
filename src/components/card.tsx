@@ -40,7 +40,7 @@ export function Card({card, tagClicked}: {card: any, tagClicked: (tag: string) =
             </div>
             <div>
               <h3 class={style.title}>{card.name}</h3>
-              <p>{description.substring(0,200).trim() + "..."}</p>
+              <p class={style.description}>{description.substring(0,200).trim() + "..."}</p>
             </div>
           </div>
 
