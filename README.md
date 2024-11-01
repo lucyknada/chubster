@@ -4,7 +4,7 @@ simple chub UI that doesnt take 30 seconds to load and has no bloat
 
 if you want to build: `npm run build` then put the `dist` folder onto your server and run the standalone server to handle it all, see: https://docs.astro.build/en/guides/integrations-guide/node/#standalone
 
-otherwise during development or quick testing: `npm run dev`
+otherwise during development or quick testing: `npm run dev` (make sure to install dependencies with `npm install` first)
 
 by default it'll build the node astro server; you can refer to other ssr-adapters other than nodejs here: https://docs.astro.build/en/guides/server-side-rendering/
 
